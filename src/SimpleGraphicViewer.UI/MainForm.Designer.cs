@@ -1,4 +1,6 @@
-﻿namespace SimpleGraphicViewer.UI;
+﻿using SimpleGraphicViewer.Core.Constants;
+
+namespace SimpleGraphicViewer.UI;
 
 partial class MainForm
 {
@@ -28,27 +30,26 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
-        MainMenu = new MenuStrip();
+        mainMenu = new MenuStrip();
         fileToolStripMenuItem = new ToolStripMenuItem();
         openToolStripMenuItem = new ToolStripMenuItem();
         exitToolStripMenuItem = new ToolStripMenuItem();
-        OpenFileDialog = new OpenFileDialog();
-        statusStrip1 = new StatusStrip();
-        CoordinateStatusBar = new ToolStripStatusLabel();
-        ScaleRatioStatusBar = new ToolStripStatusLabel();
-        MainMenu.SuspendLayout();
-        statusStrip1.SuspendLayout();
+        openFileDialog = new OpenFileDialog();
+        statusStrip = new StatusStrip();
+        coordinateStatusBar = new ToolStripStatusLabel();
+        scaleRatioStatusBar = new ToolStripStatusLabel();
+        mainMenu.SuspendLayout();
+        statusStrip.SuspendLayout();
         SuspendLayout();
         // 
-        // MainMenu
+        // mainMenu
         // 
-        MainMenu.ImageScalingSize = new Size(24, 24);
-        MainMenu.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
-        MainMenu.Location = new Point(0, 0);
-        MainMenu.Name = "MainMenu";
-        MainMenu.Size = new Size(800, 33);
-        MainMenu.TabIndex = 0;
-        MainMenu.Text = "menuStrip1";
+        mainMenu.ImageScalingSize = new Size(24, 24);
+        mainMenu.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+        mainMenu.Location = new Point(0, 0);
+        mainMenu.Name = "mainMenu";
+        mainMenu.Size = new Size(800, 33);
+        mainMenu.TabIndex = 0;
         // 
         // fileToolStripMenuItem
         // 
@@ -73,65 +74,64 @@ partial class MainForm
         exitToolStripMenuItem.Text = "Exit";
         exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
         // 
-        // OpenFileDialog
+        // openFileDialog
         // 
-        OpenFileDialog.FileName = "OpenFileDialog";
-        OpenFileDialog.FileOk += OpenFileDialog_FileOK;
+        openFileDialog.Filter = $"JSON file|*{AllowedFileExtensions.JSON}";
+        openFileDialog.FileOk += openFileDialog_FileOK;
         // 
-        // statusStrip1
+        // statusStrip
         // 
-        statusStrip1.ImageScalingSize = new Size(24, 24);
-        statusStrip1.Items.AddRange(new ToolStripItem[] { CoordinateStatusBar, ScaleRatioStatusBar });
-        statusStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
-        statusStrip1.Location = new Point(0, 428);
-        statusStrip1.Name = "statusStrip1";
-        statusStrip1.Size = new Size(800, 22);
-        statusStrip1.TabIndex = 1;
-        statusStrip1.Text = "statusStrip1";
+        statusStrip.ImageScalingSize = new Size(24, 24);
+        statusStrip.Items.AddRange(new ToolStripItem[] { coordinateStatusBar, scaleRatioStatusBar });
+        statusStrip.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+        statusStrip.Location = new Point(0, 428);
+        statusStrip.Name = "statusStrip";
+        statusStrip.Size = new Size(800, 22);
+        statusStrip.TabIndex = 1;
+        statusStrip.Text = "statusStrip";
         // 
-        // CoordinateStatusBar
+        // coordinateStatusBar
         // 
-        CoordinateStatusBar.BorderSides = ToolStripStatusLabelBorderSides.Right;
-        CoordinateStatusBar.Name = "CoordinateStatusBar";
-        CoordinateStatusBar.Size = new Size(4, 15);
+        coordinateStatusBar.BorderSides = ToolStripStatusLabelBorderSides.Right;
+        coordinateStatusBar.Name = "coordinateStatusBar";
+        coordinateStatusBar.Size = new Size(4, 15);
         // 
-        // ScaleRatioStatusBar
+        // scaleRatioStatusBar
         // 
-        ScaleRatioStatusBar.Alignment = ToolStripItemAlignment.Right;
-        ScaleRatioStatusBar.BorderSides = ToolStripStatusLabelBorderSides.Left;
-        ScaleRatioStatusBar.Name = "ScaleRatioStatusBar";
-        ScaleRatioStatusBar.Size = new Size(4, 15);
+        scaleRatioStatusBar.Alignment = ToolStripItemAlignment.Right;
+        scaleRatioStatusBar.BorderSides = ToolStripStatusLabelBorderSides.Left;
+        scaleRatioStatusBar.Name = "scaleRatioStatusBar";
+        scaleRatioStatusBar.Size = new Size(4, 15);
         // 
-        // MainForm
+        // mainForm
         // 
         AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
-        Controls.Add(statusStrip1);
-        Controls.Add(MainMenu);
-        MainMenuStrip = MainMenu;
-        Name = "MainForm";
+        Controls.Add(statusStrip);
+        Controls.Add(mainMenu);
+        MainMenuStrip = mainMenu;
+        Name = "mainForm";
         StartPosition = FormStartPosition.Manual;
-        Text = "Form1";
-        Paint += MainForm_Paint;
-        MouseMove += MainForm_MouseEnter;
-        Resize += MainForm_Resize;
-        MainMenu.ResumeLayout(false);
-        MainMenu.PerformLayout();
-        statusStrip1.ResumeLayout(false);
-        statusStrip1.PerformLayout();
+        Paint += mainForm_Paint;
+        MouseMove += mainForm_MouseEnter;
+        Resize += mainForm_Resize;
+        mainMenu.ResumeLayout(false);
+        mainMenu.PerformLayout();
+        statusStrip.ResumeLayout(false);
+        statusStrip.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
 
-    private MenuStrip MainMenu;
+    private MenuStrip mainMenu;
     private ToolStripMenuItem fileToolStripMenuItem;
     private ToolStripMenuItem openToolStripMenuItem;
     private ToolStripMenuItem exitToolStripMenuItem;
-    private OpenFileDialog OpenFileDialog;
-    private StatusStrip statusStrip1;
-    private ToolStripStatusLabel CoordinateStatusBar;
-    private ToolStripStatusLabel ScaleRatioStatusBar;
+    private OpenFileDialog openFileDialog;
+    private StatusStrip statusStrip;
+    private ToolStripStatusLabel coordinateStatusBar;
+    private ToolStripStatusLabel scaleRatioStatusBar;
 }

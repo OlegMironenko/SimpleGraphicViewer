@@ -13,7 +13,7 @@ public class PrimitivePointJsonConverter : JsonConverter<PrimitivePoint>
     {
         string[] pointRow = reader.GetString()!.Split(COORDINATES_SEPARATOR);
 
-        if (pointRow.Length is 0 or > 2)
+        if (pointRow.Length != 2)
         {
             return default;
         }

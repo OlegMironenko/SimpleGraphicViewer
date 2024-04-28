@@ -20,7 +20,7 @@ public partial class MainForm : Form
 
     private void openToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        OpenFileDialog.ShowDialog();
+        openFileDialog.ShowDialog();
     }
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -28,13 +28,12 @@ public partial class MainForm : Form
         Close();
     }
 
-    private void OpenFileDialog_FileOK(object sender, CancelEventArgs e)
+    private void openFileDialog_FileOK(object sender, CancelEventArgs e)
     {
         Activate();
         Invalidate();
-        AutoScroll = true;
 
-        string? file = OpenFileDialog.FileNames.FirstOrDefault();
+        string? file = openFileDialog.FileNames.FirstOrDefault();
 
         if (string.IsNullOrEmpty(file))
         {
@@ -48,15 +47,15 @@ public partial class MainForm : Form
         _primitives = fileParser.Parse(fileStream.ReadToEnd());
     }
 
-    private void MainForm_MouseEnter(object sender, EventArgs e)
+    private void mainForm_MouseEnter(object sender, EventArgs e)
     {
         Point mousePosition = CoordinateTransformer.ShiftDisplayed(Cursor.Position
             , Size.Width / 2, Size.Height / 2);
 
-        CoordinateStatusBar.Text = $"X: {mousePosition.X}; Y: {mousePosition.Y};";
+        coordinateStatusBar.Text = $"X: {mousePosition.X}; Y: {mousePosition.Y};";
     }
 
-    private void MainForm_Paint(object sender, PaintEventArgs e)
+    private void mainForm_Paint(object sender, PaintEventArgs e)
     {
         if (!_primitives.Any())
         {
@@ -68,10 +67,10 @@ public partial class MainForm : Form
 
         float scaleRatio = PainterService.DrawPrimitives(e.Graphics, Size, 0, _primitives);
 
-        ScaleRatioStatusBar.Text = $"Scale: {(int)(1 / scaleRatio * 100)} %";
+        scaleRatioStatusBar.Text = $"Scale: {(int)(1 / scaleRatio * 100)} %";
     }
 
-    private void MainForm_Resize(object sender, EventArgs e)
+    private void mainForm_Resize(object sender, EventArgs e)
     {
         Invalidate();
     }
