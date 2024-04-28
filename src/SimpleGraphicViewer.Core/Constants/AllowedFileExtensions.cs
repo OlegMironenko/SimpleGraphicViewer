@@ -1,7 +1,6 @@
-﻿namespace SimpleGraphicViewer.UI.Constants
+﻿namespace SimpleGraphicViewer.Core.Constants;
+
+public static class AllowedFileExtensions
 {
-    public static class AllowedFileExtensions
-    {
-        public static string JSON = "json";
-    }
+    public const string JSON = ".json";
 }
