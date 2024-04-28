@@ -50,7 +50,7 @@ internal class PainterService
     {
         List<Point> points = [];
 
-        //todo. Move array of points to in-memory cache, this allows to skip this when window is resized
+        //todo. Move array of points to in-memory cache, this allows to skip this step when window is resized
         //todo. Cache should be invalidated after new file is loaded
         foreach (PrimitiveBase primitive in primitives)
         {
