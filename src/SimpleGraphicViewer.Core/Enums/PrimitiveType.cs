@@ -1,9 +1,8 @@
-﻿namespace SimpleGraphicViewer.Core.Enums
+﻿namespace SimpleGraphicViewer.Core.Enums;
+
+public enum PrimitiveType
 {
-    public enum PrimitiveType
-    {
-        Line,
-        Circle,
-        Triangle
-    }
+    Line,
+    Circle,
+    Triangle
 }

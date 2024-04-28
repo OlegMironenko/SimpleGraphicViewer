@@ -1,14 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SimpleGraphicViewer.Core.Parsers;
+using SimpleGraphicViewer.Core.Abstracts;
 using SimpleGraphicViewer.Infrastructure.Parsers;
 
-namespace SimpleGraphicViewer.Infrastructure.Extensions
+namespace SimpleGraphicViewer.Infrastructure.Extensions;
+
+public static class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    public static void AddInfrastructure(this IServiceCollection services)
     {
-        public static void AddInfrastructure(this IServiceCollection services)
-        {
-            services.AddKeyedTransient<IPrimitiveParser, JsonPrimitivesParser>("JsonParser");
-        }
+        services.AddTransient<ISourceFileParserContext, SourceFileParserContext>();
     }
 }

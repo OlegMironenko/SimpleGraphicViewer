@@ -3,29 +3,28 @@ using SimpleGraphicViewer.Core.Models.Abstracts;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace SimpleGraphicViewer.Core.Models
+namespace SimpleGraphicViewer.Core.Models;
+
+public class LinePrimitive : PrimitiveBase
 {
-    public class LinePrimitive : PrimitiveBase
+    public override PrimitiveBase FromJsonString(string jsonString)
     {
-        public override PrimitiveBase FromJsonString(string jsonString)
+        ArgumentException.ThrowIfNullOrWhiteSpace(jsonString);
+
+        try
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(jsonString);
-
-            try
-            {
-                return JsonSerializer.Deserialize<LinePrimitive>(jsonString) ?? new LinePrimitive();
-            }
-            catch (JsonException)
-            {
-                return new LinePrimitive();
-            }
+            return JsonSerializer.Deserialize<LinePrimitive>(jsonString) ?? new LinePrimitive();
         }
-
-        [JsonPropertyName("a")]
-        [JsonConverter(typeof(PrimitivePointJsonConverter))]
-        public PrimitivePoint PointA { get; set; }
-        [JsonPropertyName("b")]
-        [JsonConverter(typeof(PrimitivePointJsonConverter))]
-        public PrimitivePoint PointB { get; set; }
+        catch (JsonException)
+        {
+            return new LinePrimitive();
+        }
     }
+
+    [JsonPropertyName("a")]
+    [JsonConverter(typeof(PrimitivePointJsonConverter))]
+    public PrimitivePoint? PointA { get; set; }
+    [JsonPropertyName("b")]
+    [JsonConverter(typeof(PrimitivePointJsonConverter))]
+    public PrimitivePoint? PointB { get; set; }
 }
