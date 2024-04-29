@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace SimpleGraphicViewer.Core.Models;
 
-public class LinePrimitive : PrimitiveBase
+public sealed class LinePrimitive : PrimitiveBase
 {
     public override PrimitiveBase FromJsonString(string jsonString)
     {

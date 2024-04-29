@@ -9,7 +9,7 @@ namespace SimpleGraphicViewer.UI.Painters;
 
 internal class LinePainter : IPainter
 {
-    public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio)
+    public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio, int yCorrection)
     {
         LinePrimitive? line = primitive as LinePrimitive;
 
@@ -22,7 +22,7 @@ internal class LinePainter : IPainter
         using Pen pen = new(Color.FromArgb(colorDefinition.AlphaChannel, colorDefinition.RedChannel, colorDefinition.GreenChannel, colorDefinition.BlueChannel), GraphicsConstants.DEFAULT_BRUSH_WIDTH);
 
         graphics.DrawLine(pen
-            , CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(line.PointA.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2)
-            , CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(line.PointB.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2));
+            , CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(line.PointA.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2 + yCorrection)
+            , CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(line.PointB.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2 + yCorrection));
     }
 }

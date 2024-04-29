@@ -8,7 +8,7 @@ namespace SimpleGraphicViewer.UI.Painters;
 
 internal class TrianglePainter : IPainter
 {
-    public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio)
+    public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio, int yCorrection)
     {
         TrianglePrimitive? triangle = primitive as TrianglePrimitive;
 
@@ -20,9 +20,9 @@ internal class TrianglePainter : IPainter
         PrimitiveColor colorDefinition = triangle.Color;
         Point[] vertices =
         [
-            CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(triangle.PointA.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2),
-            CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(triangle.PointB.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2),
-            CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(triangle.PointC.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2)
+            CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(triangle.PointA.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2 + yCorrection),
+            CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(triangle.PointB.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2 + yCorrection),
+            CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(triangle.PointC.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2 + yCorrection)
         ];
 
         if (triangle.Filled.GetValueOrDefault())
