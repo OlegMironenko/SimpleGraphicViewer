@@ -7,12 +7,13 @@ namespace SimpleGraphicViewer.Core.Converters;
 public class PrimitiveColorJsonConverter : JsonConverter<PrimitiveColor>
 {
     private const char CHANNELS_SEPARATOR = ';';
+    private const int SEGMENTS_COUNT = 4;
 
     public override PrimitiveColor? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         string[] colorRow = reader.GetString()!.Split(CHANNELS_SEPARATOR);
 
-        if (colorRow.Length is 0 or > 4)
+        if (colorRow.Length != SEGMENTS_COUNT)
         {
             return default;
         }

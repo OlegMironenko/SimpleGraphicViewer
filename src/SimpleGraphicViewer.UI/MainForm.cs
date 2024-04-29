@@ -9,7 +9,7 @@ public partial class MainForm : Form
 {
     private readonly ISourceFileParserContext _sourceFileParserContext;
 
-    private IEnumerable<PrimitiveBase> _primitives = [];
+    private List<PrimitiveBase> _primitives = [];
 
     public MainForm(ISourceFileParserContext sourceFileParserContext)
     {
@@ -44,13 +44,15 @@ public partial class MainForm : Form
         using StreamReader fileStream = fileInfo.OpenText();
 
         ISourceFileParser fileParser = _sourceFileParserContext.GetConcreteParser(fileInfo.Extension);
-        _primitives = fileParser.Parse(fileStream.ReadToEnd());
+        _primitives = fileParser.Parse(fileStream.ReadToEnd()).ToList();
     }
 
     private void mainForm_MouseEnter(object sender, EventArgs e)
     {
-        Point mousePosition = CoordinateTransformer.ShiftDisplayed(Cursor.Position
-            , Size.Width / 2, Size.Height / 2);
+        // Point mousePosition = CoordinateTransformer.ShiftDisplayed(Cursor.Position
+        //     , Size.Width / 2, Size.Height / 2);
+
+        Point mousePosition = Cursor.Position;
 
         coordinateStatusBar.Text = $"X: {mousePosition.X}; Y: {mousePosition.Y};";
     }
@@ -62,10 +64,7 @@ public partial class MainForm : Form
             return;
         }
 
-        Size actualDrawableArea = new(Size.Width, Size.Height);
-        //MainMenuStrip.Height;
-
-        float scaleRatio = PainterService.DrawPrimitives(e.Graphics, Size, 0, _primitives);
+        float scaleRatio = PainterService.DrawPrimitives(e.Graphics, Size, mainMenu.Height, _primitives);
 
         scaleRatioStatusBar.Text = $"Scale: {(int)(1 / scaleRatio * 100)} %";
     }

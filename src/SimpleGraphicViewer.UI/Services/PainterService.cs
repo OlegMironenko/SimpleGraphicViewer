@@ -9,8 +9,7 @@ namespace SimpleGraphicViewer.UI.Services;
 
 internal class PainterService
 {
-    public static float DrawPrimitives(Graphics graphics, Size areaSize, int menuHeight
-        , IEnumerable<PrimitiveBase> primitives)
+    public static float DrawPrimitives(Graphics graphics, Size areaSize, int yCorrection, IReadOnlyCollection<PrimitiveBase> primitives)
     {
         if (!primitives.Any())
         {
@@ -19,6 +18,7 @@ internal class PainterService
 
         IEnumerable<Point> allPoints = CollectAllPoints(primitives);
 
+        //todo. Move scale calculation to separate class
         float scaleRatio = CoordinateTransformer.CalculateScaleRatio(areaSize, allPoints);
 
         foreach (PrimitiveBase primitive in primitives)
@@ -27,17 +27,17 @@ internal class PainterService
             {
                 case PrimitiveType.Line:
                 {
-                    new LinePainter().Draw(graphics, areaSize, primitive, scaleRatio);
+                    new LinePainter().Draw(graphics, areaSize, primitive, scaleRatio, yCorrection);
                     break;
                 }
                 case PrimitiveType.Circle:
                 {
-                    new CirclePainter().Draw(graphics, areaSize, primitive, scaleRatio);
+                    new CirclePainter().Draw(graphics, areaSize, primitive, scaleRatio, yCorrection);
                     break;
                 }
                 case PrimitiveType.Triangle:
                 {
-                    new TrianglePainter().Draw(graphics, areaSize, primitive, scaleRatio);
+                    new TrianglePainter().Draw(graphics, areaSize, primitive, scaleRatio, yCorrection);
                     break;
                 }
             }
@@ -46,7 +46,7 @@ internal class PainterService
         return scaleRatio;
     }
 
-    private static IEnumerable<Point> CollectAllPoints(IEnumerable<PrimitiveBase> primitives)
+    private static IEnumerable<Point> CollectAllPoints(IReadOnlyCollection<PrimitiveBase> primitives)
     {
         List<Point> points = [];
 

@@ -10,7 +10,7 @@ namespace SimpleGraphicViewer.UI.Painters;
 
 internal class CirclePainter : IPainter
 {
-    public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio)
+    public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio, int yCorrection)
     {
         CirclePrimitive? circle = primitive as CirclePrimitive;
 
@@ -21,7 +21,7 @@ internal class CirclePainter : IPainter
 
         PrimitiveColor colorDefinition = circle.Color;
 
-        Point center = CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(circle.Center.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2);
+        Point center = CoordinateTransformer.ShiftActual(CoordinateTransformer.Scale(circle.Center.ToPoint(), scaleRatio), areaSize.Width / 2, areaSize.Height / 2 + yCorrection);
         if (circle.Filled.GetValueOrDefault())
         {
             using SolidBrush brush = new(Color.FromArgb(colorDefinition.AlphaChannel, colorDefinition.RedChannel, colorDefinition.GreenChannel, colorDefinition.BlueChannel));

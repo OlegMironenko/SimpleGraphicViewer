@@ -8,12 +8,13 @@ namespace SimpleGraphicViewer.Core.Converters;
 public class PrimitivePointJsonConverter : JsonConverter<PrimitivePoint>
 {
     private const char COORDINATES_SEPARATOR = ';';
+    private const int SEGMENTS_COUNT = 2;
 
     public override PrimitivePoint? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         string[] pointRow = reader.GetString()!.Split(COORDINATES_SEPARATOR);
 
-        if (pointRow.Length != 2)
+        if (pointRow.Length != SEGMENTS_COUNT)
         {
             return default;
         }
