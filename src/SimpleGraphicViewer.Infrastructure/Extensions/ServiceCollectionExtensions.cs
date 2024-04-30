@@ -6,8 +6,10 @@ namespace SimpleGraphicViewer.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddInfrastructure(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddTransient<ISourceFileParserContext, SourceFileParserContext>();
+
+        return services;
     }
 }

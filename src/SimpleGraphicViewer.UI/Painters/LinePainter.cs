@@ -7,7 +7,7 @@ using SimpleGraphicViewer.UI.Services;
 
 namespace SimpleGraphicViewer.UI.Painters;
 
-internal class LinePainter : IPainter
+internal sealed class LinePainter : IPainter
 {
     public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio, int yCorrection)
     {

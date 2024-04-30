@@ -4,7 +4,7 @@ using SimpleGraphicViewer.Core.Exceptions;
 
 namespace SimpleGraphicViewer.Infrastructure.Parsers;
 
-internal class SourceFileParserContext : ISourceFileParserContext
+internal sealed class SourceFileParserContext : ISourceFileParserContext
 {
     private readonly Dictionary<string, ISourceFileParser> _parsers = new(StringComparer.OrdinalIgnoreCase)
     {

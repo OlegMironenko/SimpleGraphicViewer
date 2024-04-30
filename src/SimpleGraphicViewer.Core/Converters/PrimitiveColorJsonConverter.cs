@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace SimpleGraphicViewer.Core.Converters;
 
-public class PrimitiveColorJsonConverter : JsonConverter<PrimitiveColor>
+public sealed class PrimitiveColorJsonConverter : JsonConverter<PrimitiveColor>
 {
     private const char CHANNELS_SEPARATOR = ';';
     private const int SEGMENTS_COUNT = 4;
