@@ -21,9 +21,17 @@ public sealed class CirclePrimitive : PrimitiveBase
         }
     }
 
+    public override IEnumerable<PrimitivePoint> Points =>
+    [
+        new PrimitivePoint(Center.PointX - Radius, Center.PointY),
+        new PrimitivePoint(Center.PointX, Center.PointY + Radius),
+        new PrimitivePoint(Center.PointX + Radius, Center.PointY),
+        new PrimitivePoint(Center.PointX, Center.PointY - Radius)
+    ];
+
     [JsonPropertyName("center")]
     [JsonConverter(typeof(PrimitivePointJsonConverter))]
     public PrimitivePoint? Center { get; set; }
-    [JsonPropertyName("radius")]
-    public float Radius { get; set; }
+
+    [JsonPropertyName("radius")] public float Radius { get; set; }
 }

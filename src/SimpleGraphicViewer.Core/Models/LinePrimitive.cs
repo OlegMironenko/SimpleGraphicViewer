@@ -21,9 +21,12 @@ public sealed class LinePrimitive : PrimitiveBase
         }
     }
 
+    public override IEnumerable<PrimitivePoint> Points => [PointA, PointB];
+
     [JsonPropertyName("a")]
     [JsonConverter(typeof(PrimitivePointJsonConverter))]
     public PrimitivePoint? PointA { get; set; }
+
     [JsonPropertyName("b")]
     [JsonConverter(typeof(PrimitivePointJsonConverter))]
     public PrimitivePoint? PointB { get; set; }
