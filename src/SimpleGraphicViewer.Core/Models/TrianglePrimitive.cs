@@ -21,12 +21,16 @@ public sealed class TrianglePrimitive : PrimitiveBase
         }
     }
 
+    public override IEnumerable<PrimitivePoint> Points => [PointA, PointB, PointC];
+
     [JsonPropertyName("a")]
     [JsonConverter(typeof(PrimitivePointJsonConverter))]
     public PrimitivePoint? PointA { get; set; }
+
     [JsonPropertyName("b")]
     [JsonConverter(typeof(PrimitivePointJsonConverter))]
     public PrimitivePoint? PointB { get; set; }
+
     [JsonPropertyName("c")]
     [JsonConverter(typeof(PrimitivePointJsonConverter))]
     public PrimitivePoint? PointC { get; set; }
