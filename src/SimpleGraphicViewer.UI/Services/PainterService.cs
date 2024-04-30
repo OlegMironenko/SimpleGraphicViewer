@@ -16,7 +16,7 @@ public sealed class PainterService
 
     public float DrawPrimitives(Graphics graphics, Size areaSize, int yCorrection, IReadOnlyCollection<PrimitiveBase> primitives)
     {
-        if (!primitives.Any())
+        if (primitives.Count == 0)
         {
             return GraphicsConstants.DEFAULT_SCALE_RATIO;
         }

@@ -61,7 +61,7 @@ public partial class MainForm : Form
 
     private void mainForm_Paint(object sender, PaintEventArgs e)
     {
-        if (!_primitives.Any())
+        if (_primitives.Count == 0)
         {
             return;
         }

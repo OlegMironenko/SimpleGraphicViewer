@@ -10,7 +10,7 @@ internal sealed class PainterContext : IPainterContext
     {
         { PrimitiveType.Line, new LinePainter() },
         { PrimitiveType.Circle, new CirclePainter() },
-        { PrimitiveType.Triangle, new TrianglePainter() },
+        { PrimitiveType.Triangle, new TrianglePainter() }
     };
 
     public IPainter GetConcretePainter(PrimitiveType primitiveType)

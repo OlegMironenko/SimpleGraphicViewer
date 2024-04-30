@@ -9,8 +9,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddUI(this IServiceCollection services)
     {
-        services.AddSingleton<IPainterContext, PainterContext>();
-        services.AddSingleton<PainterService>();
+        services.AddTransient<IPainterContext, PainterContext>();
+        services.AddTransient<PainterService>();
         services.AddTransient<MainForm>();
 
         return services;
