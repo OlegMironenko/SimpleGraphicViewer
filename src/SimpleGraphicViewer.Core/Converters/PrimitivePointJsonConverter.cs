@@ -5,7 +5,7 @@ using SimpleGraphicViewer.Core.Models;
 
 namespace SimpleGraphicViewer.Core.Converters;
 
-public class PrimitivePointJsonConverter : JsonConverter<PrimitivePoint>
+public sealed class PrimitivePointJsonConverter : JsonConverter<PrimitivePoint>
 {
     private const char COORDINATES_SEPARATOR = ';';
     private const int SEGMENTS_COUNT = 2;

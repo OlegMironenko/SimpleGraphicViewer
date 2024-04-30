@@ -8,12 +8,14 @@ namespace SimpleGraphicViewer.UI;
 public partial class MainForm : Form
 {
     private readonly ISourceFileParserContext _sourceFileParserContext;
+    private readonly PainterService _painterService;
 
     private List<PrimitiveBase> _primitives = [];
 
-    public MainForm(ISourceFileParserContext sourceFileParserContext)
+    public MainForm(ISourceFileParserContext sourceFileParserContext, PainterService painterService)
     {
         _sourceFileParserContext = sourceFileParserContext;
+        _painterService = painterService;
 
         InitializeComponent();
     }
@@ -59,12 +61,12 @@ public partial class MainForm : Form
 
     private void mainForm_Paint(object sender, PaintEventArgs e)
     {
-        if (!_primitives.Any())
+        if (_primitives.Count == 0)
         {
             return;
         }
 
-        float scaleRatio = PainterService.DrawPrimitives(e.Graphics, Size, mainMenu.Height, _primitives);
+        float scaleRatio = _painterService.DrawPrimitives(e.Graphics, Size, mainMenu.Height, _primitives);
 
         scaleRatioStatusBar.Text = $"Scale: {(int)(1 / scaleRatio * 100)} %";
     }

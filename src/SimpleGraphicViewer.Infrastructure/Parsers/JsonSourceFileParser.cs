@@ -6,7 +6,7 @@ using SimpleGraphicViewer.Core.Abstracts;
 
 namespace SimpleGraphicViewer.Infrastructure.Parsers;
 
-internal class JsonSourceFileParser : ISourceFileParser
+internal sealed class JsonSourceFileParser : ISourceFileParser
 {
     public IEnumerable<PrimitiveBase> Parse(string jsonData)
     {

@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleGraphicViewer.Infrastructure.Extensions;
+using SimpleGraphicViewer.UI.Extensions;
 
 namespace SimpleGraphicViewer.UI;
 
@@ -20,8 +21,9 @@ internal static class Program
         return Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
-                services.AddInfrastructure();
-                services.AddTransient<MainForm>();
+                services
+                    .AddInfrastructure()
+                    .AddUI();
             });
     }
 }

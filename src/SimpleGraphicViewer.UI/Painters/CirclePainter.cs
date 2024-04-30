@@ -8,7 +8,7 @@ using SimpleGraphicViewer.UI.Services;
 
 namespace SimpleGraphicViewer.UI.Painters;
 
-internal class CirclePainter : IPainter
+internal sealed class CirclePainter : IPainter
 {
     public void Draw(Graphics graphics, Size areaSize, PrimitiveBase primitive, float scaleRatio, int yCorrection)
     {
